@@ -38,8 +38,7 @@ export const App = () => {
   };
 
   const handleLoadMore = event => {
-    // event.preventDefault();
-    setCurrentPage(prevPage => prevPage + 1);
+    setCurrentPage(prevPage => (prevPage === null ? null : prevPage + 1));
   };
 
   const hasImages = images.length > 0;
@@ -50,9 +49,9 @@ export const App = () => {
       <Container>
         <Searchbar onSearch={handleSearch} />
 
-        {loading ? (
-          <LoaderComp />
-        ) : (
+        {loading && <LoaderComp />}
+
+        {hasImages && (
           <>
             <ImageGallery images={images} />
             {shouldDisplayLoadMore && (
